@@ -2,7 +2,6 @@ package graphics;
 
 import org.lwjgl.opengl.GL;
 
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -22,13 +21,12 @@ public class Draw {
         System.out.println("I'm in the draw constructor");
     }
 
-    public void draw(long window) {
+    private void clear() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+    }
 
+    public void draw(long window) {
+        clear();
         glfwSwapBuffers(window); // swap the color buffers
-
-        // Poll for window events. The key callback above will only be
-        // invoked during this call.
-        glfwPollEvents();
     }
 }
