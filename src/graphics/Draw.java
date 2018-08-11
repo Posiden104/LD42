@@ -29,4 +29,8 @@ public class Draw {
         clear();
         glfwSwapBuffers(window); // swap the color buffers
     }
+
+    public void drawTextureRegion(Texture texture, int x, int y, int filledAmount, int deltaFilledAmount) {
+
+    }
 }

@@ -1,5 +1,6 @@
 package game;
 
+import graphics.Draw;
 import graphics.Texture;
 
 public abstract class Entity {
@@ -7,12 +8,10 @@ public abstract class Entity {
     protected final Texture texture;
     protected final int width;
     protected final int height;
-    protected int filledAmount;
 
-    public Entity(Texture texture, float x, float y, int width, int height, int filledAmount) {
+    public Entity(Texture texture, float x, float y, int width, int height) {
 
         this.texture = texture;
-
         this.width = width;
         this.height = height;
     }
@@ -39,18 +38,10 @@ public abstract class Entity {
      * Renders the entity.
      *
      * param renderer Renderer for batching
-     * @param alpha    Alpha value, needed for interpolation
+     * @param deltaFilledAmount    The previous filled amount //probably won't work because this class isn't specific to vats
      */
-    public void render(float alpha) {
-        // renderer.drawTextureRegion(texture, x, y, tx, ty, width, height, color);
-    }
-
-    public void setFilledAmount(int amount) {
-        this.filledAmount = amount;
-    }
-
-    public int getFilledAmount() {
-        return filledAmount;
+    public void render(Draw drawer, int deltaFilledAmount) {
+        drawer.drawTextureRegion(texture, width, height, deltaFilledAmount);
     }
 
     public float getWidth() {
