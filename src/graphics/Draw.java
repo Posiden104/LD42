@@ -4,13 +4,11 @@ import org.lwjgl.opengl.GL;
 
 import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Draw {
 
-    public void draw(long window) {
-        System.out.println(window);
+    public Draw() {
         // This line is critical for LWJGL's interoperation with GLFW's
         // OpenGL context, or any context that is managed externally.
         // LWJGL detects the context that is current in the current thread,
@@ -21,16 +19,16 @@ public class Draw {
         // Set the clear color
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-        // Run the rendering loop until the user has attempted to close
-        // the window or has pressed the ESCAPE key.
-        while ( !glfwWindowShouldClose(window) ) {
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+        System.out.println("I'm in the draw constructor");
+    }
 
-            glfwSwapBuffers(window); // swap the color buffers
+    public void draw(long window) {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
-            // Poll for window events. The key callback above will only be
-            // invoked during this call.
-            glfwPollEvents();
-        }
+        glfwSwapBuffers(window); // swap the color buffers
+
+        // Poll for window events. The key callback above will only be
+        // invoked during this call.
+        glfwPollEvents();
     }
 }
